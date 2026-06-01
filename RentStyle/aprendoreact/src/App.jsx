@@ -1,9 +1,11 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Inicio from './pages/Inicio';
+
 
 function App() {
   return (
     <>
-    <h1>RentStyle</h1>
+    <Inicio />
     </>
   )
 }
