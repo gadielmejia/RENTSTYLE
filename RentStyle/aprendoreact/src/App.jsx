@@ -4,22 +4,20 @@ import Footer from './components/Footer';
 import Nav from './components/Nav';
 import Register from './pages/register';
 import Login from './pages/Login';
+import DashboardAdmin from './pages/Dashboardadmin';
+import DashboardUser from './pages/DashboardUser';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={
-          <>
-            <Nav />
-            <Inicio />
-            <Footer />
-          </>
-        } />
+        <Route path="/" element={<Inicio />} />
         <Route path="/registro" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admin" element={<h1>Admin</h1>} />
         <Route path="/user" element={<h1>User</h1>} />
+        <Route path="/dashboardadmin" element={<DashboardAdmin />} />
+        <Route path="/dashboarduser" element={<DashboardUser />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,5 +1,10 @@
+import Nav from "./Nav";
+import Footer from "./Footer";
+
 function Inicio() {
     return (
+        <>
+        <Nav/>
         <section className="hero">
             <div className="hero-card">
             <div className="hero-copy">
@@ -13,6 +18,8 @@ function Inicio() {
             </div>
             </div>
         </section>
+        <Footer/>
+        </>
     );
 }
 export default Inicio;

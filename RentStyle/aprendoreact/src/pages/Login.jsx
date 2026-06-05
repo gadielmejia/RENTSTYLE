@@ -8,18 +8,54 @@ function Login() {
     const [password, setPassword] = useState("");
     const [darkMode, setDarkMode] = useState(false);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (email === "admin@rentstyle.com" && password === "1234") {
-            localStorage.setItem("role", "admin");
-            window.location.href = "dashboard-admin.html";
-            return;
-        }
-
-        localStorage.setItem("role", "user");
-        window.location.href = "dashboard-user.html";
-    };
+    const users = [
+    {
+        email: "sebasadmin@rentstyle.com",
+        password: "sebas1234",
+        role: "admin",
+        name: "Sebas"
+    },
+    {
+        email: "gadieladmin@rentstyle.com",
+        password: "gadiel1234",
+        role: "admin",
+        name: "Gadiel"
+    },
+    {
+        email: "alejauser@rentstyle.com",
+        password: "aleja1234",
+        role: "user",
+        name: "Aleja"
+    },
+    {
+        email: "stivenuser@rentstyle.com",
+        password: "stiven1234",
+        role: "user",
+        name: "Stiven"
+    }
+];
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const user = users.find(
+    (u) =>
+      u.email.toLowerCase() === email.toLowerCase() &&
+      u.password === password
+  );
+  if (!user) {
+    alert("Correo o contraseña incorrectos");
+    return;
+  }
+  localStorage.setItem(
+    "currentUser",
+    JSON.stringify(user)
+  );
+  console.log("Usuario guardado:", user);
+  if (user.role === "admin") {
+    window.location.href = "/dashboardadmin";
+  } else {
+    window.location.href = "/dashboarduser";
+  }
+};
 
     return (
      <>
@@ -58,13 +94,23 @@ function Login() {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Correo electrónico</label>
-                                <input
-                                    type="email"placeholder="ejemplo@correo.com"requiredvalue={email}onChange={(e) => setEmail(e.target.value)} />
+                                    <input
+                                     type="email"
+                                     placeholder="ejemplo@correo.com"
+                                    required
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    />
                                 </div>
                                 <div className="form-group">
                                 <label>Contraseña</label>
                                 <input
-                                    type="password"placeholder="Ingresa tu contraseña" requiredvalue={password}onChange={(e) => setPassword(e.target.value)}/>
+                                    type="password"
+                                    placeholder="Ingresa tu contraseña"
+                                    required
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    />
                             </div>
                             <button className="login-btn"type="submit">Ingresar</button>
                         </form>
